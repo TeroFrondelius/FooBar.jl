@@ -1,6 +1,4 @@
 language: julia
-env:
-  - COVERALLS_REPO_TOKEN=UCdCBrBTXVT2QwXzWjLeq7IxZXq6xJoHO
 os:
   - linux
   - osx
