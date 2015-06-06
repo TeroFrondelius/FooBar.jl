@@ -10,7 +10,9 @@ notifications:
 # uncomment the following lines to override the default test script
 script:
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-  - julia --check-bounds=yes -e 'Pkg.clone(pwd()); Pkg.build("FooBar"); Pkg.test("FooBar"; coverage=true); run(`ls -al . src test`)'
+  - julia --check-bounds=yes -e 'Pkg.clone(pwd()); Pkg.build("FooBar")'
+  - julia --code-coverage test/runtests.jl
+  - ls -al test
 after_success:
-  - julia -e 'cd(Pkg.dir("FooBar"));run(`ls -al src test`); ENV["REPO_TOKEN"]="UCdCBrBTXVT2QwXzWjLeq7IxZXq6xJoHO"; Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
+  - julia -e 'cd(Pkg.dir("FooBar"));run(`ls -al src test`); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
 
