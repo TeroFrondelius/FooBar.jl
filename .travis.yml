@@ -12,5 +12,5 @@ script:
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
   - julia --check-bounds=yes -e 'Pkg.clone(pwd()); Pkg.build("FooBar"); Pkg.test("FooBar"; coverage=true)'
 after_success:
-  - julia -e 'cd(Pkg.dir("FooBar"));ENV["REPO_TOKEN"]="UCdCBrBTXVT2QwXzWjLeq7IxZXq6xJoHO"; Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
+  - julia -e 'cd(Pkg.dir("FooBar"));run(`ls -al`);ENV["REPO_TOKEN"]="UCdCBrBTXVT2QwXzWjLeq7IxZXq6xJoHO"; Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
 
