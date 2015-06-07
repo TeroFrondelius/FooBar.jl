@@ -7,4 +7,4 @@ using Base.Test
 
 @test_approx_eq 1.0 1.0
 
-@test FooBar.hello_world() == "HelloWorld!!!"
+@test FooBar.hello_world() == 1
