@@ -8,6 +8,6 @@ notifications:
   email: false
 script:
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-  - julia -e 'Pkg.init(); Pkg.clone(pwd()); Pkg.build("FooBar"); Pkg.test("FooBar"; coverage=true)'
+  - julia --check-bounds=yes -e 'Pkg.init(); Pkg.clone(pwd()); Pkg.build("FooBar"); Pkg.test("FooBar"; coverage=true)'
 after_success:
  - julia -e 'cd(Pkg.dir("FooBar")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
